@@ -8,372 +8,702 @@
     :root{
       --bg:#070b10;
       --card:#0c1220;
-      --card2:#0b1626;
       --txt:#e7f3ff;
-      --muted:#91a9bf;
+      --muted:#93a9bf;
       --teal:#10f0d7;
-      --teal2:#00b7ff;
+      --blue:#00b7ff;
       --danger:#ff4d6d;
       --ok:#39ff88;
-      --border:rgba(255,255,255,.08);
-      --shadow: 0 12px 40px rgba(0,0,0,.55);
-      --radius: 18px;
+      --border:rgba(255,255,255,.09);
+      --shadow: 0 16px 60px rgba(0,0,0,.55);
+      --r:18px;
     }
-
     *{box-sizing:border-box}
     body{
-      margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       background:
         radial-gradient(1000px 600px at 20% 10%, rgba(16,240,215,.18), transparent 60%),
         radial-gradient(900px 500px at 80% 20%, rgba(0,183,255,.15), transparent 55%),
         radial-gradient(900px 600px at 50% 90%, rgba(16,240,215,.10), transparent 60%),
         var(--bg);
       color:var(--txt);
-      padding:18px;
+      padding:16px;
     }
-
-    .wrap{
-      max-width: 640px;
-      margin: 0 auto;
-    }
-
+    .wrap{max-width:760px;margin:0 auto}
     .hero{
-      padding:18px 18px 10px;
       border:1px solid var(--border);
-      border-radius: var(--radius);
-      background: linear-gradient(180deg, rgba(16,240,215,.08), rgba(0,0,0,0));
-      box-shadow: var(--shadow);
-      position: relative;
-      overflow: hidden;
+      border-radius:var(--r);
+      padding:16px;
+      background:linear-gradient(180deg, rgba(16,240,215,.08), rgba(255,255,255,.02));
+      box-shadow:var(--shadow);
+      display:flex; gap:12px; align-items:center;
     }
-
-    .hero::after{
-      content:"";
-      position:absolute;
-      inset:-60px;
-      background:
-        conic-gradient(from 200deg, rgba(16,240,215,.35), rgba(0,183,255,.25), rgba(16,240,215,.12), rgba(0,0,0,0));
-      filter: blur(26px);
-      opacity:.35;
-      pointer-events:none;
-    }
-
-    .title{
-      position:relative;
-      display:flex;
-      align-items:center;
-      gap:10px;
-      z-index:1;
-    }
-
     .badge{
-      width:44px;height:44px;
+      width:46px;height:46px; border-radius:14px;
       display:grid;place-items:center;
-      border-radius:14px;
-      background: linear-gradient(135deg, rgba(16,240,215,.25), rgba(0,183,255,.18));
-      border:1px solid rgba(16,240,215,.25);
-      box-shadow: 0 10px 30px rgba(16,240,215,.12);
+      background:linear-gradient(135deg, rgba(16,240,215,.28), rgba(0,183,255,.18));
+      border:1px solid rgba(16,240,215,.22);
       font-size:22px;
     }
-
-    h1{
-      margin:0;
-      font-size:20px;
-      letter-spacing:.3px;
-    }
-    .sub{
-      position:relative;
-      z-index:1;
-      margin:8px 0 0;
-      color:var(--muted);
-      font-size:13px;
-      line-height:1.45;
-    }
-
-    .card{
-      margin-top:14px;
-      padding:16px;
-      border:1px solid var(--border);
-      border-radius: var(--radius);
-      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
-      box-shadow: var(--shadow);
-    }
-
-    .row{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top:10px;
-    }
-
-    .pill{
-      flex:1 1 120px;
-      padding:12px 12px;
-      border-radius: 14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(10,16,26,.55);
-      color: var(--txt);
-      cursor:pointer;
-      text-align:left;
-      transition: transform .08s ease, border-color .12s ease, background .12s ease;
-      user-select:none;
-    }
-    .pill:hover{
-      transform: translateY(-1px);
-      border-color: rgba(16,240,215,.30);
-      background: rgba(10,22,34,.68);
-    }
-    .pill.active{
-      border-color: rgba(16,240,215,.55);
-      box-shadow: 0 0 0 2px rgba(16,240,215,.12) inset;
-    }
-    .pill .g{
-      font-weight: 700;
-      font-size:14px;
-    }
-    .pill .d{
-      color: var(--muted);
-      font-size:12px;
-      margin-top:3px;
-    }
-
-    .field{
+    h1{margin:0;font-size:18px;letter-spacing:.2px}
+    .sub{margin:4px 0 0;color:var(--muted);font-size:13px;line-height:1.35}
+    .bar{
       margin-top:12px;
+      display:flex; gap:10px; flex-wrap:wrap;
     }
-    label{
-      display:block;
-      font-size:12px;
-      color:var(--muted);
-      margin-bottom:6px;
+    .pill{
+      flex:1 1 180px;
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:12px;
+      background:rgba(10,16,26,.55);
     }
-
+    .pill b{display:block;font-size:12px;color:var(--muted);font-weight:600}
+    .pill span{display:block;font-size:18px;margin-top:4px;font-weight:900}
+    .grid{
+      margin-top:12px;
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap:10px;
+    }
+    @media (max-width:620px){ .grid{grid-template-columns:1fr;} }
+    .card{
+      border:1px solid var(--border);
+      border-radius:var(--r);
+      padding:14px;
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      box-shadow:var(--shadow);
+    }
+    .card h2{margin:0 0 8px;font-size:15px}
+    .muted{color:var(--muted);font-size:13px;line-height:1.35}
+    .row{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
     input{
       width:100%;
-      padding:14px 14px;
-      border-radius: 14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(10,16,26,.55);
-      color: var(--txt);
-      outline: none;
+      padding:13px 14px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(10,16,26,.55);
+      color:var(--txt);
+      outline:none;
       font-size:16px;
     }
-    input:focus{
-      border-color: rgba(16,240,215,.45);
-      box-shadow: 0 0 0 3px rgba(16,240,215,.12);
-    }
-
-    .quick{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top:10px;
-    }
-    .qbtn{
-      padding:10px 12px;
-      border-radius: 14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(10,16,26,.55);
-      color: var(--txt);
-      cursor:pointer;
-      font-weight:600;
-      font-size:13px;
-      transition: transform .08s ease, border-color .12s ease, background .12s ease;
-    }
-    .qbtn:hover{
-      transform: translateY(-1px);
-      border-color: rgba(0,183,255,.35);
-      background: rgba(10,22,34,.68);
-    }
-
-    .actions{
-      display:flex;
-      gap:10px;
-      margin-top:14px;
-      flex-wrap:wrap;
-    }
-
+    input:focus{border-color:rgba(16,240,215,.45); box-shadow:0 0 0 3px rgba(16,240,215,.12)}
     .btn{
-      flex: 1 1 220px;
-      padding:14px 14px;
-      border-radius: 16px;
+      width:100%;
+      padding:13px 14px;
+      border-radius:16px;
       border:0;
       cursor:pointer;
       font-size:15px;
-      font-weight:800;
+      font-weight:900;
       letter-spacing:.2px;
-      box-shadow: 0 18px 40px rgba(0,0,0,.35);
-      transition: transform .08s ease, filter .12s ease;
+      transition:transform .08s ease, filter .12s ease;
     }
-    .btn:hover{ transform: translateY(-1px); filter: brightness(1.05); }
+    .btn:hover{transform:translateY(-1px); filter:brightness(1.05)}
+    .primary{background:linear-gradient(135deg, var(--teal), var(--blue)); color:#00121a}
+    .ghost{background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); color:var(--txt)}
+    .danger{background:rgba(255,77,109,.14); border:1px solid rgba(255,77,109,.28); color:var(--txt)}
+    .ok{color:var(--ok)}
+    .bad{color:var(--danger)}
+    .divider{height:1px;background:rgba(255,255,255,.10); margin:12px 0}
+    .screen{display:none}
+    .screen.active{display:block}
 
-    .primary{
-      background: linear-gradient(135deg, var(--teal), var(--teal2));
-      color:#00121a;
+    /* Slots */
+    .slots{
+      display:grid; grid-template-columns: repeat(3, 1fr);
+      gap:10px; margin-top:10px;
     }
-    .secondary{
-      background: rgba(255,255,255,.06);
+    .reel{
       border:1px solid rgba(255,255,255,.12);
-      color:var(--txt);
+      border-radius:16px;
+      background:rgba(10,16,26,.55);
+      height:78px;
+      display:grid; place-items:center;
+      font-size:34px;
+      font-weight:900;
+      box-shadow: inset 0 0 0 2px rgba(16,240,215,.05);
     }
-
-    .status{
-      margin-top:12px;
-      font-size:13px;
-      color: var(--muted);
+    .big{
+      font-size:14px;
+      padding:12px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(10,16,26,.55);
+      margin-top:10px;
+      white-space:pre-wrap;
       line-height:1.4;
     }
-    .status b{ color: var(--txt); }
-    .ok{ color: var(--ok); }
-    .bad{ color: var(--danger); }
 
-    .mini{
-      margin-top:10px;
-      font-size:12px;
-      color: rgba(145,169,191,.85);
+    /* Blackjack */
+    .hand{display:flex; gap:8px; flex-wrap:wrap; margin-top:8px}
+    .cardy{
+      padding:10px 10px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(10,16,26,.55);
+      min-width:44px;
+      text-align:center;
+      font-weight:900;
     }
-
-    code{
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      font-size: 12px;
-      color:#bfefff;
-    }
+    .controls{display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:10px; margin-top:10px}
+    @media (max-width:620px){ .controls{grid-template-columns:1fr} }
   </style>
 </head>
 
 <body>
-  <div class="wrap">
-    <div class="hero">
-      <div class="title">
-        <div class="badge">🎰</div>
-        <div>
-          <h1>Grimmy Casino — Mini App</h1>
-          <div class="sub">Pick a game, set your bet, then send it to your bot. Your bot must handle <code>web_app_data</code>.</div>
-        </div>
+<div class="wrap">
+  <div class="hero">
+    <div class="badge">🎰</div>
+    <div>
+      <h1>Grimmy Casino — Interactive Mini App</h1>
+      <div class="sub">Games play inside the Mini App. Balance is stored locally (simple mode).</div>
+    </div>
+  </div>
+
+  <div class="bar">
+    <div class="pill"><b>Balance</b><span id="bal">0</span></div>
+    <div class="pill"><b>Jackpot</b><span id="jp">0</span></div>
+    <div class="pill"><b>Status</b><span id="status">Ready</span></div>
+  </div>
+
+  <!-- LOBBY -->
+  <div class="grid screen active" id="screen-lobby">
+    <div class="card">
+      <h2>Lobby</h2>
+      <div class="muted">Choose a game. Set your bet inside each game.</div>
+      <div class="row">
+        <button class="btn primary" onclick="go('slots')">🎰 Slots</button>
+        <button class="btn primary" onclick="go('bj')">🃏 Blackjack</button>
+      </div>
+      <div class="row">
+        <button class="btn ghost" onclick="go('dice','dice')">🎲 Dice</button>
+        <button class="btn ghost" onclick="go('dice','darts')">🎯 Darts</button>
+      </div>
+      <div class="row">
+        <button class="btn ghost" onclick="go('dice','basket')">🏀 Basketball</button>
+        <button class="btn ghost" onclick="go('dice','football')">⚽ Football</button>
+      </div>
+      <div class="row">
+        <button class="btn ghost" onclick="go('dice','bowling')">🎳 Bowling</button>
+        <button class="btn danger" onclick="resetAll()">Reset Local Balance</button>
       </div>
     </div>
 
     <div class="card">
-      <div class="sub" style="margin-top:0">
-        <b>Step 1:</b> Choose a game.
+      <h2>Quick Notes</h2>
+      <div class="muted">
+        • This is “simple mode”: balance is stored on-device (localStorage).<br>
+        • If you want real anti-cheat + shared balances, you’ll need a backend (I can wire that next).<br>
+        • Works best when opened inside Telegram.
       </div>
-
-      <div class="row" id="games"></div>
-
-      <div class="field">
-        <label for="bet">Bet Amount</label>
-        <input id="bet" type="number" inputmode="numeric" min="1" placeholder="e.g. 250" />
-        <div class="quick">
-          <div class="qbtn" data-bet="25">25</div>
-          <div class="qbtn" data-bet="50">50</div>
-          <div class="qbtn" data-bet="100">100</div>
-          <div class="qbtn" data-bet="250">250</div>
-          <div class="qbtn" data-bet="500">500</div>
-          <div class="qbtn" data-bet="1000">1,000</div>
-        </div>
-      </div>
-
-      <div class="actions">
-        <button class="btn primary" id="sendBtn">Send to Bot</button>
-        <button class="btn secondary" id="closeBtn">Close</button>
-      </div>
-
-      <div class="status" id="status"></div>
-      <div class="mini">
-        Payload sent looks like:
-        <br/>
-        <code>{"action":"slots","bet":250,"kind":null}</code>
-      </div>
+      <div class="divider"></div>
+      <button class="btn ghost" onclick="closeApp()">Close</button>
     </div>
   </div>
 
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <script>
-    const tg = window.Telegram && window.Telegram.WebApp ? window.Telegram.WebApp : null;
+  <!-- SLOTS -->
+  <div class="screen" id="screen-slots">
+    <div class="card">
+      <h2>🎰 Slots</h2>
+      <div class="muted">Match 3 symbols to win multipliers. Jackpot chance on big hit.</div>
 
-    const GAME_LIST = [
-      { id: "slots", label: "🎰 Slots", desc: "Spin & hit multipliers", kind: null },
-      { id: "bj", label: "🃏 Blackjack", desc: "Hit / stand / double", kind: null },
-      { id: "dice", label: "🎲 Dice", desc: "Roll for a win", kind: "dice" },
-      { id: "dice", label: "🎯 Darts", desc: "Bullseye or bust", kind: "darts" },
-      { id: "dice", label: "🏀 Basketball", desc: "Swish for payout", kind: "basket" },
-      { id: "dice", label: "⚽ Football", desc: "Goal = win", kind: "football" },
-      { id: "dice", label: "🎳 Bowling", desc: "Strike for payout", kind: "bowling" },
-    ];
+      <div class="row">
+        <div style="flex:1">
+          <label class="muted">Bet</label>
+          <input id="slotsBet" type="number" min="1" placeholder="e.g. 250" />
+        </div>
+        <div style="flex:1">
+          <label class="muted">Quick</label>
+          <div class="row" style="margin-top:0">
+            <button class="btn ghost" onclick="setBet('slotsBet', 50)">50</button>
+            <button class="btn ghost" onclick="setBet('slotsBet', 250)">250</button>
+            <button class="btn ghost" onclick="setBet('slotsBet', 1000)">1k</button>
+          </div>
+        </div>
+      </div>
 
-    let selected = GAME_LIST[0];
+      <div class="slots">
+        <div class="reel" id="r1">⬛</div>
+        <div class="reel" id="r2">⬛</div>
+        <div class="reel" id="r3">⬛</div>
+      </div>
 
-    function setStatus(html) {
-      document.getElementById("status").innerHTML = html;
+      <div class="row">
+        <button class="btn primary" id="spinBtn" onclick="spinSlots()">SPIN</button>
+        <button class="btn ghost" onclick="back()">Back</button>
+      </div>
+
+      <div class="big" id="slotsLog">Place a bet and spin.</div>
+    </div>
+  </div>
+
+  <!-- BLACKJACK -->
+  <div class="screen" id="screen-bj">
+    <div class="card">
+      <h2>🃏 Blackjack</h2>
+      <div class="muted">Goal: beat dealer without busting. Dealer hits to 17.</div>
+
+      <div class="row">
+        <div style="flex:1">
+          <label class="muted">Bet</label>
+          <input id="bjBet" type="number" min="1" placeholder="e.g. 250" />
+        </div>
+        <div style="flex:1">
+          <label class="muted">Quick</label>
+          <div class="row" style="margin-top:0">
+            <button class="btn ghost" onclick="setBet('bjBet', 50)">50</button>
+            <button class="btn ghost" onclick="setBet('bjBet', 250)">250</button>
+            <button class="btn ghost" onclick="setBet('bjBet', 1000)">1k</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="muted"><b>Dealer</b> (<span id="dVal">?</span>)</div>
+      <div class="hand" id="dealerHand"></div>
+
+      <div class="divider"></div>
+      <div class="muted"><b>You</b> (<span id="pVal">0</span>)</div>
+      <div class="hand" id="playerHand"></div>
+
+      <div class="controls">
+        <button class="btn primary" id="bjDealBtn" onclick="bjStart()">DEAL</button>
+        <button class="btn ghost" onclick="bjHit()" id="bjHitBtn" disabled>HIT</button>
+        <button class="btn ghost" onclick="bjStand()" id="bjStandBtn" disabled>STAND</button>
+        <button class="btn ghost" onclick="bjDouble()" id="bjDoubleBtn" disabled>DOUBLE</button>
+        <button class="btn danger" onclick="bjSurrender()" id="bjSurrenderBtn" disabled>SURRENDER</button>
+        <button class="btn ghost" onclick="back()">Back</button>
+      </div>
+
+      <div class="big" id="bjLog">Tap DEAL to start.</div>
+    </div>
+  </div>
+
+  <!-- DICE -->
+  <div class="screen" id="screen-dice">
+    <div class="card">
+      <h2 id="diceTitle">🎲 Dice</h2>
+      <div class="muted" id="diceDesc">Roll for a win.</div>
+
+      <div class="row">
+        <div style="flex:1">
+          <label class="muted">Bet</label>
+          <input id="diceBet" type="number" min="1" placeholder="e.g. 250" />
+        </div>
+        <div style="flex:1">
+          <label class="muted">Quick</label>
+          <div class="row" style="margin-top:0">
+            <button class="btn ghost" onclick="setBet('diceBet', 50)">50</button>
+            <button class="btn ghost" onclick="setBet('diceBet', 250)">250</button>
+            <button class="btn ghost" onclick="setBet('diceBet', 1000)">1k</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="reel" id="diceFace" style="height:90px;font-size:38px">⬛</div>
+
+      <div class="row">
+        <button class="btn primary" id="diceBtn" onclick="playDice()">ROLL</button>
+        <button class="btn ghost" onclick="back()">Back</button>
+      </div>
+
+      <div class="big" id="diceLog">Place a bet and roll.</div>
+    </div>
+  </div>
+</div>
+
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script>
+  // Telegram UI niceties
+  const tg = window.Telegram?.WebApp || null;
+  if (tg) { tg.ready(); tg.expand(); }
+
+  // --- Local economy (simple mode)
+  const STORE_KEY = "grimmy_casino_state_v1";
+  const DEFAULT = { balance: 1000, jackpot: 5000 };
+
+  function loadState(){
+    try {
+      const s = JSON.parse(localStorage.getItem(STORE_KEY) || "null");
+      if (!s || typeof s.balance !== "number" || typeof s.jackpot !== "number") return { ...DEFAULT };
+      return s;
+    } catch { return { ...DEFAULT }; }
+  }
+  function saveState(){ localStorage.setItem(STORE_KEY, JSON.stringify(state)); renderTop(); }
+  let state = loadState();
+
+  // --- UI helpers
+  function fmt(n){ return Number(n).toLocaleString("en-US"); }
+  function setStatus(t){ document.getElementById("status").textContent = t; }
+  function renderTop(){
+    document.getElementById("bal").textContent = fmt(state.balance);
+    document.getElementById("jp").textContent = fmt(state.jackpot);
+  }
+  renderTop();
+
+  function show(screenId){
+    document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+    document.getElementById("screen-"+screenId).classList.add("active");
+  }
+  function back(){ show("lobby"); setStatus("Ready"); }
+  function go(screenId, kind=null){
+    currentDiceKind = kind;
+    if (screenId === "dice") setupDice(kind);
+    show(screenId);
+    setStatus("In game");
+  }
+  function setBet(id, v){ document.getElementById(id).value = v; }
+  function closeApp(){ if (tg) tg.close(); else window.close(); }
+
+  function resetAll(){
+    state = { ...DEFAULT };
+    saveState();
+    setStatus("Reset");
+    alert("Local balance reset to 1,000 and jackpot to 5,000.");
+  }
+
+  // --- Common economy rules (simple)
+  const MIN_BET = 10;
+  const MAX_BET = 250000;
+  const JACKPOT_FEE_BP = 250; // 2.5%
+
+  function takeBet(bet){
+    bet = Math.floor(Number(bet || 0));
+    if (!Number.isFinite(bet) || bet < MIN_BET) return { ok:false, msg:`Min bet is ${fmt(MIN_BET)}.` };
+    if (bet > MAX_BET) return { ok:false, msg:`Max bet is ${fmt(MAX_BET)}.` };
+    if (state.balance < bet) return { ok:false, msg:`Not enough balance. You have ${fmt(state.balance)}.` };
+
+    const jpFee = Math.floor(bet * JACKPOT_FEE_BP / 10000);
+    state.balance -= bet;
+    state.jackpot += jpFee;
+    saveState();
+    return { ok:true, bet, jpFee, effective: bet - jpFee };
+  }
+
+  // ---------------- SLOTS ----------------
+  const SYMBOLS = ["🍒","🍋","🍇","🔔","💎","7️⃣"];
+  const PAY = {
+    "🍒🍒🍒":5, "🍋🍋🍋":6, "🍇🍇🍇":7, "🔔🔔🔔":10, "💎💎💎":25, "7️⃣7️⃣7️⃣":50
+  };
+  function pickWeighted(){
+    const w = ["🍒","🍒","🍒","🍒","🍋","🍋","🍋","🍇","🍇","🔔","🔔","💎","7️⃣"];
+    return w[Math.floor(Math.random()*w.length)];
+  }
+  async function spinSlots(){
+    const btn = document.getElementById("spinBtn");
+    btn.disabled = true;
+
+    const betIn = document.getElementById("slotsBet").value;
+    const t = takeBet(betIn);
+    if (!t.ok){
+      document.getElementById("slotsLog").textContent = "❌ " + t.msg;
+      btn.disabled = false;
+      return;
     }
 
-    function renderGames() {
-      const container = document.getElementById("games");
-      container.innerHTML = "";
-      GAME_LIST.forEach((g) => {
-        const el = document.createElement("div");
-        el.className = "pill" + (g === selected ? " active" : "");
-        el.innerHTML = `<div class="g">${g.label}</div><div class="d">${g.desc}</div>`;
-        el.onclick = () => { selected = g; renderGames(); };
-        container.appendChild(el);
-      });
+    document.getElementById("slotsLog").textContent =
+      `Bet: ${fmt(t.bet)} | Jackpot Fee: ${fmt(t.jpFee)}\nSpinning...`;
+
+    // animation frames
+    for (let i=0;i<10;i++){
+      document.getElementById("r1").textContent = SYMBOLS[Math.floor(Math.random()*SYMBOLS.length)];
+      document.getElementById("r2").textContent = SYMBOLS[Math.floor(Math.random()*SYMBOLS.length)];
+      document.getElementById("r3").textContent = SYMBOLS[Math.floor(Math.random()*SYMBOLS.length)];
+      await new Promise(r=>setTimeout(r, 80 + i*15));
     }
 
-    function getBet() {
-      const v = Number(document.getElementById("bet").value || 0);
-      if (!Number.isFinite(v) || v <= 0) return 0;
-      return Math.floor(v);
-    }
+    const reels = [pickWeighted(), pickWeighted(), pickWeighted()];
+    document.getElementById("r1").textContent = reels[0];
+    document.getElementById("r2").textContent = reels[1];
+    document.getElementById("r3").textContent = reels[2];
 
-    // Quick bet buttons
-    document.querySelectorAll(".qbtn").forEach((b) => {
-      b.addEventListener("click", () => {
-        document.getElementById("bet").value = b.dataset.bet;
-      });
-    });
+    const key = reels.join("");
+    const mult = PAY[key] || 0;
 
-    // Init Telegram WebApp context
-    if (tg) {
-      tg.ready();
-      tg.expand();
-      setStatus(`✅ Opened inside <b>Telegram</b>. Tap <b>Send to Bot</b> to play.`);
+    if (mult > 0){
+      let win = t.effective * mult;
+      state.balance += win;
+
+      // tiny jackpot chance when winning
+      let jpHit = false;
+      if (Math.random() < 0.01){
+        const jp = state.jackpot;
+        state.jackpot = 5000;
+        state.balance += jp;
+        jpHit = true;
+        win += jp;
+      }
+
+      saveState();
+      document.getElementById("slotsLog").textContent =
+        `✅ WIN! ${reels.join(" ")}\nPayout: ${fmt(t.effective*mult)} (x${mult})` +
+        (jpHit ? `\n🏆 JACKPOT HIT! +${fmt(state.jackpot === 5000 ? (win - t.effective*mult) : 0)}` : "");
     } else {
-      setStatus(`⚠️ <span class="bad">Not inside Telegram.</span> This page must be opened as a Mini App from your bot.`);
+      saveState();
+      document.getElementById("slotsLog").textContent =
+        `❌ No match.\nResult: ${reels.join(" ")}\nLost: ${fmt(t.bet)}`;
     }
 
-    renderGames();
+    btn.disabled = false;
+  }
 
-    document.getElementById("sendBtn").addEventListener("click", () => {
-      const bet = getBet();
-      if (!bet) {
-        setStatus(`❌ <span class="bad">Enter a bet amount</span> (example: 250).`);
-        return;
-      }
+  // ---------------- BLACKJACK ----------------
+  let bj = null;
 
-      const payload = {
-        action: selected.id,      // "slots" | "bj" | "dice"
-        bet: bet,                 // number
-        kind: selected.kind       // for dice games: "dice"|"darts"|...
-      };
+  function deckNew(){
+    const suits = ["♠","♥","♦","♣"];
+    const ranks = ["A","2","3","4","5","6","7","8","9","10","J","Q","K"];
+    const d=[];
+    for (const s of suits) for (const r of ranks) d.push({r,s});
+    for (let i=d.length-1;i>0;i--){
+      const j=Math.floor(Math.random()*(i+1));
+      [d[i],d[j]]=[d[j],d[i]];
+    }
+    return d;
+  }
+  function cardStr(c){ return c.r + c.s; }
+  function handVal(hand){
+    let total=0, aces=0;
+    for (const c of hand){
+      if (c.r==="A"){ aces++; total+=11; }
+      else if (["K","Q","J"].includes(c.r)) total+=10;
+      else total+=Number(c.r);
+    }
+    while (total>21 && aces>0){ total-=10; aces--; }
+    return total;
+  }
+  function isBJ(hand){ return hand.length===2 && handVal(hand)===21; }
 
-      if (!tg) {
-        setStatus(`❌ <span class="bad">Open this inside Telegram</span> (Mini App).`);
-        return;
-      }
-
-      try {
-        tg.sendData(JSON.stringify(payload));
-        setStatus(`✅ <span class="ok">Sent!</span> Check the chat — your bot should respond.`);
-        // Note: Telegram typically closes the Mini App after sendData()
-      } catch (e) {
-        setStatus(`❌ <span class="bad">Failed to send:</span> ${String(e)}`);
-      }
+  function bjRender(revealDealer=false){
+    const d = document.getElementById("dealerHand");
+    const p = document.getElementById("playerHand");
+    d.innerHTML=""; p.innerHTML="";
+    bj.dealer.forEach((c,idx)=>{
+      const el=document.createElement("div");
+      el.className="cardy";
+      el.textContent = (!revealDealer && idx===1) ? "??" : cardStr(c);
+      d.appendChild(el);
+    });
+    bj.player.forEach(c=>{
+      const el=document.createElement("div");
+      el.className="cardy";
+      el.textContent = cardStr(c);
+      p.appendChild(el);
     });
 
-    document.getElementById("closeBtn").addEventListener("click", () => {
-      if (tg) tg.close();
-      else window.close();
-    });
-  </script>
+    document.getElementById("pVal").textContent = handVal(bj.player);
+    document.getElementById("dVal").textContent = revealDealer ? handVal(bj.dealer) : "?";
+  }
+
+  function bjSetButtons(active){
+    document.getElementById("bjHitBtn").disabled = !active;
+    document.getElementById("bjStandBtn").disabled = !active;
+    document.getElementById("bjDoubleBtn").disabled = !active;
+    document.getElementById("bjSurrenderBtn").disabled = !active;
+    document.getElementById("bjDealBtn").disabled = active;
+  }
+
+  function bjLog(t){ document.getElementById("bjLog").textContent = t; }
+
+  function bjStart(){
+    if (bj && bj.active) return;
+    const betIn = document.getElementById("bjBet").value;
+    const t = takeBet(betIn);
+    if (!t.ok){ bjLog("❌ " + t.msg); return; }
+
+    bj = {
+      active:true,
+      bet: t.bet,
+      effective: t.effective,
+      jpFee: t.jpFee,
+      deck: deckNew(),
+      player: [],
+      dealer: [],
+      doubled: false
+    };
+
+    bj.player.push(bj.deck.pop(), bj.deck.pop());
+    bj.dealer.push(bj.deck.pop(), bj.deck.pop());
+
+    bjRender(false);
+    bjSetButtons(true);
+
+    // immediate blackjack resolution
+    const pBJ = isBJ(bj.player), dBJ = isBJ(bj.dealer);
+    if (pBJ || dBJ){
+      bjFinish();
+    } else {
+      bjLog(`Dealt. Your move.\nBet: ${fmt(bj.bet)} | Jackpot Fee: ${fmt(bj.jpFee)}`);
+    }
+  }
+
+  function bjHit(){
+    if (!bj?.active) return;
+    bj.player.push(bj.deck.pop());
+    bjRender(false);
+    const pv = handVal(bj.player);
+    if (pv > 21){
+      bjFinish(true);
+    } else {
+      bjLog("HIT. Your move.");
+    }
+  }
+
+  function bjStand(){
+    if (!bj?.active) return;
+    bjFinish();
+  }
+
+  function bjDouble(){
+    if (!bj?.active) return;
+    if (state.balance < bj.bet){
+      bjLog(`❌ Not enough balance to double (need ${fmt(bj.bet)}).`);
+      return;
+    }
+    // take additional bet (simple: same jackpot fee rule applies)
+    const extra = takeBet(bj.bet);
+    if (!extra.ok){ bjLog("❌ " + extra.msg); return; }
+
+    bj.bet += extra.bet;
+    bj.effective += extra.effective;
+    bj.jpFee += extra.jpFee;
+    bj.doubled = true;
+
+    bj.player.push(bj.deck.pop());
+    bjRender(false);
+    bjFinish();
+  }
+
+  function bjSurrender(){
+    if (!bj?.active) return;
+    // refund half of total bet
+    const refund = Math.floor(bj.bet / 2);
+    state.balance += refund;
+    saveState();
+    bjRender(true);
+    bjLog(`🏳️ Surrendered. Refunded: ${fmt(refund)}.`);
+    bj.active = false;
+    bjSetButtons(false);
+  }
+
+  function bjFinish(busted=false){
+    // dealer plays
+    let pv = handVal(bj.player);
+    if (!busted && pv <= 21){
+      while (handVal(bj.dealer) < 17){
+        bj.dealer.push(bj.deck.pop());
+      }
+    }
+    const dv = handVal(bj.dealer);
+
+    bjRender(true);
+
+    let delta = 0;
+    let msg = "";
+
+    if (pv > 21){
+      delta = 0;
+      msg = `💥 You busted (${pv}). You lose ${fmt(bj.bet)}.`;
+    } else if (dv > 21){
+      delta = bj.bet * 2; // return bet + win equal to bet
+      msg = `🔥 Dealer busted (${dv}). You win ${fmt(bj.bet)}!`;
+    } else {
+      const pBJ = isBJ(bj.player), dBJ = isBJ(bj.dealer);
+      if (pBJ && !dBJ){
+        const win = Math.floor(bj.bet * 1.5);
+        delta = bj.bet + win; // return bet + win
+        msg = `✨ Blackjack! Win ${fmt(win)} (3:2).`;
+      } else if (dBJ && !pBJ){
+        delta = 0;
+        msg = `😵 Dealer blackjack. You lose ${fmt(bj.bet)}.`;
+      } else if (pv > dv){
+        delta = bj.bet * 2;
+        msg = `✅ You win! ${pv} vs ${dv} (+${fmt(bj.bet)}).`;
+      } else if (pv < dv){
+        delta = 0;
+        msg = `❌ You lose. ${pv} vs ${dv} (-${fmt(bj.bet)}).`;
+      } else {
+        delta = bj.bet; // push returns bet
+        msg = `🤝 Push! ${pv} vs ${dv}. Bet returned.`;
+      }
+    }
+
+    // Apply payout
+    if (delta > 0){
+      state.balance += delta;
+      saveState();
+    } else {
+      saveState();
+    }
+
+    bjLog(`${msg}\nBet: ${fmt(bj.bet)} | Jackpot Fee: ${fmt(bj.jpFee)}`);
+    bj.active = false;
+    bjSetButtons(false);
+  }
+
+  // ---------------- DICE ----------------
+  let currentDiceKind = "dice";
+  const DICE = {
+    dice:    { title:"🎲 Dice", desc:"Win on 6 (x3)", win:[6], mult:3, faces:["⚀","⚁","⚂","⚃","⚄","⚅"] },
+    darts:   { title:"🎯 Darts", desc:"Bullseye-ish win on 6 (x3)", win:[6], mult:3, faces:["1️⃣","2️⃣","3️⃣","4️⃣","5️⃣","🎯"] },
+    basket:  { title:"🏀 Basketball", desc:"Win on 5 (x2)", win:[5], mult:2, faces:["❌","❌","❌","❌","🏀","🏀"] },
+    football:{ title:"⚽ Football", desc:"Win on 5 (x2)", win:[5], mult:2, faces:["❌","❌","❌","❌","⚽","⚽"] },
+    bowling: { title:"🎳 Bowling", desc:"Strike win on 6 (x3)", win:[6], mult:3, faces:["1️⃣","2️⃣","3️⃣","4️⃣","5️⃣","🎳"] },
+  };
+
+  function setupDice(kind){
+    const g = DICE[kind] || DICE.dice;
+    document.getElementById("diceTitle").textContent = g.title;
+    document.getElementById("diceDesc").textContent = g.desc;
+    document.getElementById("diceFace").textContent = "⬛";
+    document.getElementById("diceLog").textContent = "Place a bet and roll.";
+  }
+
+  async function playDice(){
+    const g = DICE[currentDiceKind] || DICE.dice;
+    const btn = document.getElementById("diceBtn");
+    btn.disabled = true;
+
+    const betIn = document.getElementById("diceBet").value;
+    const t = takeBet(betIn);
+    if (!t.ok){
+      document.getElementById("diceLog").textContent = "❌ " + t.msg;
+      btn.disabled = false;
+      return;
+    }
+
+    document.getElementById("diceLog").textContent =
+      `Bet: ${fmt(t.bet)} | Jackpot Fee: ${fmt(t.jpFee)}\nRolling...`;
+
+    // animation
+    for (let i=0;i<10;i++){
+      document.getElementById("diceFace").textContent = g.faces[Math.floor(Math.random()*g.faces.length)];
+      await new Promise(r=>setTimeout(r, 70 + i*10));
+    }
+
+    const value = 1 + Math.floor(Math.random()*6);
+    document.getElementById("diceFace").textContent = g.faces[value-1] || "🎲";
+
+    if (g.win.includes(value)){
+      const win = t.effective * g.mult;
+      state.balance += (t.bet + win); // return bet + profit (simple display)
+      // NOTE: we already subtracted bet in takeBet(), so add back bet + win
+      saveState();
+      document.getElementById("diceLog").textContent =
+        `✅ WIN! Rolled ${value}\nPayout: ${fmt(win)} (x${g.mult})`;
+    } else {
+      saveState();
+      document.getElementById("diceLog").textContent =
+        `❌ Lost. Rolled ${value}\nLost: ${fmt(t.bet)}`;
+    }
+
+    btn.disabled = false;
+  }
+
+  // init dice screen defaults
+  setupDice("dice");
+</script>
 </body>
 </html>
